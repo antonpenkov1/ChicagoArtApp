@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,14 +13,17 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lt4-qd-Nfo">
-                                <rect key="frame" x="121.66666666666669" y="351" width="150" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seurat" translatesAutoresizingMaskIntoConstraints="NO" id="lt4-qd-Nfo">
+                                <rect key="frame" x="16" y="56.5" width="343" height="554"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="1CS-Hc-bih">
+                                <rect key="frame" x="8" y="28" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="2CK-X4-h6e"/>
-                                    <constraint firstAttribute="width" constant="150" id="N1O-3O-0iC"/>
+                                    <constraint firstAttribute="width" constant="100" id="QH7-dy-cO4"/>
+                                    <constraint firstAttribute="height" constant="100" id="aGA-vm-Yk6"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -28,6 +31,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lt4-qd-Nfo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="60M-uF-iHG"/>
+                            <constraint firstItem="lt4-qd-Nfo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="16" id="954-LW-jak"/>
+                            <constraint firstAttribute="trailing" secondItem="lt4-qd-Nfo" secondAttribute="trailing" constant="16" id="IcN-fX-dmQ"/>
+                            <constraint firstItem="1CS-Hc-bih" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="hx4-by-94y"/>
+                            <constraint firstItem="1CS-Hc-bih" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="tNz-h0-el5"/>
                             <constraint firstItem="lt4-qd-Nfo" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="wSm-U3-rTr"/>
                         </constraints>
                     </view>
@@ -39,6 +46,7 @@
     </scenes>
     <resources>
         <image name="logo" width="1024" height="1024"/>
+        <image name="seurat" width="794" height="554"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
