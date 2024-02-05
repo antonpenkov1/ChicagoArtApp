@@ -117,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				D2C166D82B6BDB9E00872FE9 /* Artworks.swift */,
+				D2C166D42B6BBD1400872FE9 /* Link.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				D2C166CE2B6BA3AB00872FE9 /* NetworkManager.swift */,
-				D2C166D42B6BBD1400872FE9 /* Link.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

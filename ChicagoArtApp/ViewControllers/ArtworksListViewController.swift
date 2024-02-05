@@ -12,8 +12,11 @@ final class ArtworksListViewController: UITableViewController {
     // MARK: - Private Properties & View Lifecycle
     @IBOutlet var loadingLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var prevButtonItem: UIBarButtonItem!
+    @IBOutlet var nextButtonItem: UIBarButtonItem!
     
     private var artworks: [Artwork] = []
+    private var pages: Pagination?
     private let networkManager = NetworkManager.shared
     
     override func viewDidLoad() {
@@ -21,13 +24,8 @@ final class ArtworksListViewController: UITableViewController {
         tableView.rowHeight = 150
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
-        fetchArtworks()
-    }
-    
-    @IBAction func reloadButtonAction(_ sender: Any) {
-        activityIndicator.startAnimating()
-        loadingLabel.text = "Loading artworks ..."
-        fetchArtworks()
+        fetchArtworks(from: Link.artworks.url)
+        setupPageButtons()
     }
     
     // MARK: - Navigation
@@ -35,6 +33,41 @@ final class ArtworksListViewController: UITableViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let artworkVC = segue.destination as? ArtworkViewController
         artworkVC?.artwork = artworks[indexPath.row]
+    }
+    
+    // MARK: - IBActions
+    @IBAction func reloadButtonAction(_ sender: Any) {
+        activityIndicator.startAnimating()
+        loadingLabel.text = "Loading artworks ..."
+        fetchArtworks(from: Link.artworks.url)
+    }
+    
+    @IBAction func previousButtonAction(_ sender: UIBarButtonItem) {
+        activityIndicator.startAnimating()
+        loadingLabel.text = "Loading artworks ..."
+        fetchArtworks(from: (pages?.prevUrl)!)
+    }
+    
+    @IBAction func nextButtonAction(_ sender: UIBarButtonItem) {
+        activityIndicator.startAnimating()
+        loadingLabel.text = "Loading artworks ..."
+        fetchArtworks(from: (pages?.nextUrl)!)
+    }
+    
+    private func setupPageButtons() {
+        prevButtonItem.tintColor = .systemBlue
+        prevButtonItem.isEnabled = true
+        
+        nextButtonItem.tintColor = .systemBlue
+        nextButtonItem.isEnabled = true
+        
+        if pages?.currentPage == 1 {
+            prevButtonItem.tintColor = .gray
+            prevButtonItem.isEnabled = false
+        } else if pages?.nextUrl == nil {
+            nextButtonItem.tintColor = .gray
+            nextButtonItem.isEnabled = false
+        }
     }
 }
 
@@ -57,11 +90,13 @@ extension ArtworksListViewController {
 
 // MARK: - Networking
 extension ArtworksListViewController {
-    private func fetchArtworks() {
-        networkManager.fetch(Artworks.self, from: Link.artworks.url) { [unowned self] result in
+    private func fetchArtworks(from url: URL) {
+        networkManager.fetch(Artworks.self, from: url) { [unowned self] result in
             switch result {
             case .success(let artworksData):
                 artworks = artworksData.data
+                pages = artworksData.pagination
+                setupPageButtons()
                 activityIndicator.stopAnimating()
                 loadingLabel.isHidden = true
                 tableView.reloadData()

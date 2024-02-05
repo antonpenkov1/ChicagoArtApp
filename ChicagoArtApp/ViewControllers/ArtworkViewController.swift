@@ -27,7 +27,7 @@ final class ArtworkViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         artworkTitleLabel.text = artwork.title
         artworkDateLabel.text = artwork.dateDisplay
-        artworkDescriptionLabel.text = artwork.description
+        artworkDescriptionLabel.text = artwork.description?.replacingOccurrences(of: "<p>", with: " ")
         fetchImage()
     }
 }
@@ -35,7 +35,7 @@ final class ArtworkViewController: UIViewController {
 // MARK: - Networking
 extension ArtworkViewController {
     private func fetchImage() {
-        let url = URL(string: "https://www.artic.edu/iiif/2/\(artwork.imageId)/full/843,/0/default.jpg")!
+        let url = URL(string: "https://www.artic.edu/iiif/2/\(artwork.imageId ?? "")/full/843,/0/default.jpg")!
         networkManager.fetchImage(from: url) { [unowned self] result in
             switch result {
             case .success(let imageData):

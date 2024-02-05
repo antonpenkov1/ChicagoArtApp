@@ -30,7 +30,7 @@ final class NetworkManager {
         }
     }
     
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping(Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping(Result<T, Error>) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("/artworks", forHTTPHeaderField: "Content-Type")
@@ -51,7 +51,7 @@ final class NetworkManager {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    completion(.failure(.decodingError))
+                    completion(.failure(error))
                 }
             }
             

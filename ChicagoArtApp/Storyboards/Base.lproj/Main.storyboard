@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fwB-V5-OfC">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -22,8 +22,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </label>
                         <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="qva-Zu-x5W">
                             <rect key="frame" x="0.0" y="284" width="375" height="44"/>
@@ -49,13 +48,13 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="twf-J4-1Dh"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDR-Hr-Go8">
                                             <rect key="frame" x="162" y="130" width="181" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -92,10 +91,24 @@
                                 <action selector="reloadButtonAction:" destination="9Mf-q9-EFM" id="qfb-x3-BoY"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="arrow.right.square" catalog="system" id="2tB-ed-Tou">
+                                <connections>
+                                    <action selector="nextButtonAction:" destination="9Mf-q9-EFM" id="DZc-3G-fly"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="arrow.left.square" catalog="system" id="vqM-kM-XJm">
+                                <connections>
+                                    <action selector="previousButtonAction:" destination="9Mf-q9-EFM" id="TRB-NG-l7A"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="qva-Zu-x5W" id="Nwg-V1-i8t"/>
                         <outlet property="loadingLabel" destination="sOE-Mk-lon" id="Hog-OC-x8b"/>
+                        <outlet property="nextButtonItem" destination="2tB-ed-Tou" id="Wui-lf-d74"/>
+                        <outlet property="prevButtonItem" destination="vqM-kM-XJm" id="bo4-GB-GWE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nKg-ct-IpM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -115,33 +128,33 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSX-wh-1LY">
-                                <rect key="frame" x="0.0" y="64" width="375" height="513"/>
+                                <rect key="frame" x="8" y="64" width="359" height="513"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZXv-21-fRd">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="467.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="467.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SzP-Pi-ceq">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="359" height="350"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="bYV-DD-1fa"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Uc-1B-f5H">
-                                                <rect key="frame" x="0.0" y="366" width="375" height="26.5"/>
+                                                <rect key="frame" x="0.0" y="366" width="359" height="26.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGC-Y0-orr">
-                                                <rect key="frame" x="0.0" y="408.5" width="375" height="21.5"/>
+                                                <rect key="frame" x="0.0" y="408.5" width="359" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBW-Tl-dX9">
-                                                <rect key="frame" x="0.0" y="446" width="375" height="21.5"/>
+                                                <rect key="frame" x="0.0" y="446" width="359" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -161,9 +174,9 @@
                         <viewLayoutGuide key="safeArea" id="j6m-ar-ZAl"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="OSX-wh-1LY" firstAttribute="leading" secondItem="j6m-ar-ZAl" secondAttribute="leading" id="fXK-CI-NB1"/>
+                            <constraint firstItem="OSX-wh-1LY" firstAttribute="leading" secondItem="j6m-ar-ZAl" secondAttribute="leading" constant="8" id="fXK-CI-NB1"/>
                             <constraint firstAttribute="bottom" secondItem="OSX-wh-1LY" secondAttribute="bottom" constant="90" id="nRb-nY-iQ5"/>
-                            <constraint firstItem="OSX-wh-1LY" firstAttribute="trailing" secondItem="j6m-ar-ZAl" secondAttribute="trailing" id="oYJ-VW-Ekr"/>
+                            <constraint firstItem="OSX-wh-1LY" firstAttribute="trailing" secondItem="j6m-ar-ZAl" secondAttribute="trailing" constant="-8" id="oYJ-VW-Ekr"/>
                             <constraint firstItem="OSX-wh-1LY" firstAttribute="top" secondItem="j6m-ar-ZAl" secondAttribute="top" id="tWt-gx-93s"/>
                         </constraints>
                     </view>
@@ -191,6 +204,10 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="0ql-e9-YKJ" kind="relationship" relationship="rootViewController" id="hmc-UQ-Lvv"/>
@@ -206,11 +223,19 @@
                 <navigationController id="B0L-SV-V7E" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Artists" id="4Xk-bi-0fR">
                         <imageReference key="image" image="person.crop.artframe" catalog="system" symbolScale="large"/>
+                        <color key="badgeColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Q94-qb-4xX">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.94117647058823528" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="9Mf-q9-EFM" kind="relationship" relationship="rootViewController" id="0Og-HC-aN4"/>
@@ -244,7 +269,7 @@
                                         </constraints>
                                         <string key="text">This app was created for the love of arts and for the people who appreciate them. Art is a powerful way to express yourself, connect with others, and enrich your life. That’s why this app tries to make art a little more accessible and engaging for everyone. It lets you discover and enjoy the amazing artworks at the Chicago Art Institute, one of the oldest and largest art museums in the United States. </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -274,6 +299,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.98039215690000003" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="B0L-SV-V7E" kind="relationship" relationship="viewControllers" id="7PT-9V-g5q"/>
@@ -287,6 +313,8 @@
     </scenes>
     <resources>
         <image name="arrow.clockwise.square" catalog="system" width="128" height="114"/>
+        <image name="arrow.left.square" catalog="system" width="128" height="114"/>
+        <image name="arrow.right.square" catalog="system" width="128" height="114"/>
         <image name="bouguereau" width="843" height="1356"/>
         <image name="heart.square" catalog="system" width="128" height="114"/>
         <image name="person.crop.artframe" catalog="system" width="115" height="128"/>

@@ -19,7 +19,7 @@ final class ArtworkCell: UITableViewCell {
         artworkTitleLabel.text = artwork.title
         dateLabel.text = artwork.dateDisplay
         
-        let url = URL(string: "https://www.artic.edu/iiif/2/\(artwork.imageId)/full/843,/0/default.jpg")!
+        let url = URL(string: "https://www.artic.edu/iiif/2/\(artwork.imageId ?? "")/full/843,/0/default.jpg")!
         networkManager.fetchImage(from: url) { [unowned self] result in
             switch result {
             case .success(let imageData):

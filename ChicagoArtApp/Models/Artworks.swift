@@ -15,14 +15,13 @@ struct Artworks: Decodable {
 struct Artwork: Decodable {
     let id: Int
     let title: String
-    let imageId: String
+    let imageId: String?
     let description: String?
     let dateDisplay: String
-    let artworkTypeTitle: String
 }
 
 struct Pagination: Decodable {
     let currentPage: Int
-    let prevUrl: String
-    let nextUrl: String
+    let prevUrl: URL?
+    let nextUrl: URL?
 }
