@@ -23,5 +23,6 @@ struct Artwork: Decodable {
 
 struct Pagination: Decodable {
     let currentPage: Int
+    let prevUrl: String
     let nextUrl: String
 }

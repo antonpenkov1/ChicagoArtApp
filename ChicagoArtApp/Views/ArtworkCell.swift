@@ -24,6 +24,7 @@ final class ArtworkCell: UITableViewCell {
             switch result {
             case .success(let imageData):
                 artworkImageView.image = UIImage(data: imageData)
+                artworkImageView.contentMode = .scaleAspectFill
             case .failure(let error):
                 print(error)
             }

@@ -10,12 +10,23 @@ import UIKit
 final class ArtworksListViewController: UITableViewController {
     
     // MARK: - Private Properties & View Lifecycle
+    @IBOutlet var loadingLabel: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     private var artworks: [Artwork] = []
     private let networkManager = NetworkManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 150
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        fetchArtworks()
+    }
+    
+    @IBAction func reloadButtonAction(_ sender: Any) {
+        activityIndicator.startAnimating()
+        loadingLabel.text = "Loading artworks ..."
         fetchArtworks()
     }
     
@@ -51,9 +62,13 @@ extension ArtworksListViewController {
             switch result {
             case .success(let artworksData):
                 artworks = artworksData.data
+                activityIndicator.stopAnimating()
+                loadingLabel.isHidden = true
                 tableView.reloadData()
                 print(artworksData)
             case .failure(let error):
+                activityIndicator.stopAnimating()
+                loadingLabel.text = "Couldn't load artworks"
                 print(error)
             }
         }

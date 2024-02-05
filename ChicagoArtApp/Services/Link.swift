@@ -13,7 +13,7 @@ enum Link {
     var url: URL {
         switch self {
         case .artworks:
-            return URL(string: "https://api.artic.edu/api/v1/artworks?page=3&limit=100")!
+            return URL(string: "https://api.artic.edu/api/v1/artworks?page=8&limit=100")!
         }
     }
 }

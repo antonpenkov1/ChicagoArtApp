@@ -40,6 +40,7 @@ extension ArtworkViewController {
             switch result {
             case .success(let imageData):
                 artworkImageView.image = UIImage(data: imageData)
+                artworkImageView.contentMode = .scaleAspectFit
                 activityIndicator.stopAnimating()
             case .failure(let error):
                 print(error)

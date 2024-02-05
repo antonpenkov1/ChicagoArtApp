@@ -50,7 +50,9 @@ final class NetworkManager {
                     completion(.success(dataModel))
                 }
             } catch {
-                completion(.failure(.decodingError))
+                DispatchQueue.main.async {
+                    completion(.failure(.decodingError))
+                }
             }
             
         }.resume()
