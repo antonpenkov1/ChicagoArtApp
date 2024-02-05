@@ -18,6 +18,7 @@
 		D2C166D92B6BDB9E00872FE9 /* Artworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C166D82B6BDB9E00872FE9 /* Artworks.swift */; };
 		D2C166DB2B6BE0BB00872FE9 /* ArtworkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C166DA2B6BE0BB00872FE9 /* ArtworkCell.swift */; };
 		D2C166DE2B6BF48900872FE9 /* ArtworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C166DD2B6BF48900872FE9 /* ArtworkViewController.swift */; };
+		D2CFA3832B71664200FC8101 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D2CFA3822B71664200FC8101 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2CFA3832B71664200FC8101 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +156,9 @@
 			dependencies = (
 			);
 			name = ChicagoArtApp;
+			packageProductDependencies = (
+				D2CFA3822B71664200FC8101 /* Alamofire */,
+			);
 			productName = ChicagoArtApp;
 			productReference = D2775FA92B6704CF0073B037 /* ChicagoArtApp.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +187,9 @@
 				Base,
 			);
 			mainGroup = D2775FA02B6704CF0073B037;
+			packageReferences = (
+				D2CFA3812B71664200FC8101 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = D2775FAA2B6704CF0073B037 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -376,6 +384,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,6 +416,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +455,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2CFA3812B71664200FC8101 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2CFA3822B71664200FC8101 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2CFA3812B71664200FC8101 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2775FA12B6704CF0073B037 /* Project object */;
 }

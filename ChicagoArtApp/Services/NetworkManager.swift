@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum NetworkError: Error {
     case invalidURL
@@ -18,39 +19,30 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchImage(from url: URL, completion: @escaping(Result<Data, NetworkError>) -> Void) {
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                completion(.failure(.noData))
-                return
-            }
-            DispatchQueue.main.async {
-                completion(.success(imageData))
-            }
-        }
-    }
-    
-    func fetch(from url: URL, completion: @escaping(Result<Artworks, Error>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                print(error ?? "No error description")
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                let dataModel = try decoder.decode(Artworks.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(dataModel))
-                }
-            } catch {
-                DispatchQueue.main.async {
+    func fetchData(from url: String, completion: @escaping(Result<Data, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseData { dataResponse in
+                switch dataResponse.result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
                     completion(.failure(error))
                 }
             }
-            
-        }.resume()
+    }
+    
+    func fetchArtworks(from url: URL, completion: @escaping(Result<Artworks, Error>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let artworks = Artworks.getArtworks(from: value)
+                    completion(.success(artworks))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
     }
 }

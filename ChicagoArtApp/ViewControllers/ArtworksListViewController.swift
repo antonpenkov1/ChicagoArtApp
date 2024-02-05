@@ -46,15 +46,13 @@ final class ArtworksListViewController: UITableViewController {
     @IBAction func previousButtonAction(_ sender: UIBarButtonItem) {
         activityIndicator.startAnimating()
         loadingLabel.text = "Loading artworks ..."
-        
-        fetchArtworks(from: (pages?.prevUrl)!)
+        fetchArtworks(from: URL(string: (pages?.prevUrl) ?? "")!)
     }
     
     @IBAction func nextButtonAction(_ sender: UIBarButtonItem) {
         activityIndicator.startAnimating()
         loadingLabel.text = "Loading artworks ..."
-        tableView.numberOfRows(inSection: 0)
-        fetchArtworks(from: (pages?.nextUrl)!)
+        fetchArtworks(from: URL(string: (pages?.nextUrl) ?? "")!)
     }
     
     // MARK: - Private methods
@@ -95,7 +93,7 @@ extension ArtworksListViewController {
 // MARK: - Networking
 extension ArtworksListViewController {
     private func fetchArtworks(from url: URL) {
-        networkManager.fetch(from: url) { [unowned self] result in
+        networkManager.fetchArtworks(from: url) { [unowned self] result in
             switch result {
             case .success(let artworksData):
                 artworks = artworksData.data
