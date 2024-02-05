@@ -35,7 +35,7 @@ final class ArtworkViewController: UIViewController {
 // MARK: - Networking
 extension ArtworkViewController {
     private func fetchImage() {
-        let url = URL(string: "https://www.artic.edu/iiif/2/\(artwork.imageId ?? "")/full/843,/0/default.jpg")!
+        let url = URL(string: "\(Link.startImage.url)\(artwork.imageId ?? "")\(Link.endImage.url)")!
         networkManager.fetchImage(from: url) { [unowned self] result in
             switch result {
             case .success(let imageData):

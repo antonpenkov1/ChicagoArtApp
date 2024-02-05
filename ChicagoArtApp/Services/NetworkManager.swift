@@ -30,12 +30,8 @@ final class NetworkManager {
         }
     }
     
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping(Result<T, Error>) -> Void) {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("/artworks", forHTTPHeaderField: "Content-Type")
-        
-        URLSession.shared.dataTask(with: request) { data, _, error in
+    func fetch(from url: URL, completion: @escaping(Result<Artworks, Error>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data else {
                 print(error ?? "No error description")
                 return
@@ -45,7 +41,7 @@ final class NetworkManager {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 
-                let dataModel = try decoder.decode(T.self, from: data)
+                let dataModel = try decoder.decode(Artworks.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(dataModel))
                 }

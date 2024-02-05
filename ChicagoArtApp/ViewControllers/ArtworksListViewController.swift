@@ -9,7 +9,7 @@ import UIKit
 
 final class ArtworksListViewController: UITableViewController {
     
-    // MARK: - Private Properties & View Lifecycle
+    // MARK: - IBOutlets & Private Properties
     @IBOutlet var loadingLabel: UILabel!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var prevButtonItem: UIBarButtonItem!
@@ -19,6 +19,7 @@ final class ArtworksListViewController: UITableViewController {
     private var pages: Pagination?
     private let networkManager = NetworkManager.shared
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 150
@@ -45,15 +46,18 @@ final class ArtworksListViewController: UITableViewController {
     @IBAction func previousButtonAction(_ sender: UIBarButtonItem) {
         activityIndicator.startAnimating()
         loadingLabel.text = "Loading artworks ..."
+        
         fetchArtworks(from: (pages?.prevUrl)!)
     }
     
     @IBAction func nextButtonAction(_ sender: UIBarButtonItem) {
         activityIndicator.startAnimating()
         loadingLabel.text = "Loading artworks ..."
+        tableView.numberOfRows(inSection: 0)
         fetchArtworks(from: (pages?.nextUrl)!)
     }
     
+    // MARK: - Private methods
     private func setupPageButtons() {
         prevButtonItem.tintColor = .systemBlue
         prevButtonItem.isEnabled = true
@@ -91,7 +95,7 @@ extension ArtworksListViewController {
 // MARK: - Networking
 extension ArtworksListViewController {
     private func fetchArtworks(from url: URL) {
-        networkManager.fetch(Artworks.self, from: url) { [unowned self] result in
+        networkManager.fetch(from: url) { [unowned self] result in
             switch result {
             case .success(let artworksData):
                 artworks = artworksData.data
