@@ -20,8 +20,8 @@ struct Artworks {
         data = artworks["data"] as? [Artwork] ?? []
         pagination = artworks["pagination"] as? Pagination ?? Pagination(
             currentPage: 1,
-            prevUrl: "",
-            nextUrl: ""
+            prevUrl: "fff",
+            nextUrl: "fff"
         )
     }
         
@@ -30,19 +30,14 @@ struct Artworks {
             return Artworks(
                 data: [],
                 pagination: Pagination(
-                    currentPage: 1,
-                    prevUrl: "",
-                    nextUrl: ""
+                    currentPage: 4,
+                    prevUrl: "hhh",
+                    nextUrl: "hhh"
                 )
             ) 
         }
         return Artworks(artworks: artworksDetails)
     }
-    
-//    static func getArtworks(from value: Any) -> [Artworks] {
-//        guard let artworksDetails = value as? [[String: Any]] else { return [] }
-//        return artworksDetails.map { Artworks(artworks: $0) }
-//    }
 }
 
 struct Artwork {
@@ -67,7 +62,6 @@ struct Artwork {
         description = artwork["description"] as? String ?? ""
         dateDisplay = artwork["date_display"] as? String ?? ""
     }
-
 }
 
 struct Pagination {
