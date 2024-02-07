@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ArtworkViewController: UIViewController {
     
@@ -35,16 +36,11 @@ final class ArtworkViewController: UIViewController {
 // MARK: - Networking
 extension ArtworkViewController {
     private func fetchImage() {
-        let url = "\(Link.startImage.url)\(artwork.imageId ?? "")\(Link.endImage.url)"
-        networkManager.fetchData(from: url) { [unowned self] result in
-            switch result {
-            case .success(let imageData):
-                artworkImageView.image = UIImage(data: imageData)
-                artworkImageView.contentMode = .scaleAspectFit
-                activityIndicator.stopAnimating()
-            case .failure(let error):
-                print(error)
-            }
-        }
+        let url = URL(string: "\(Link.startImage.url)\(artwork.imageId ?? "")\(Link.endImage.url)")
+        artworkImageView.kf.indicatorType = .activity
+        artworkImageView.kf.setImage(
+            with: url,
+            options: [.transition(.flipFromBottom(1))]
+        )
     }
 }

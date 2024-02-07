@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ArtworkCell: UITableViewCell {
     
@@ -19,15 +20,16 @@ final class ArtworkCell: UITableViewCell {
         artworkTitleLabel.text = artwork.title
         dateLabel.text = artwork.dateDisplay
         
-        let url = "\(Link.startImage.url)\(artwork.imageId ?? "")\(Link.endImage.url)"
-        networkManager.fetchData(from: url) { [unowned self] result in
-            switch result {
-            case .success(let imageData):
-                artworkImageView.image = UIImage(data: imageData)
-                artworkImageView.contentMode = .scaleAspectFill
-            case .failure(let error):
-                print(error)
-            }
-        }
+        let url = URL(string: "\(Link.startImage.url)\(artwork.imageId ?? "")\(Link.endImage.url)")
+        let processor = DownsamplingImageProcessor(size: artworkImageView.bounds.size)
+        artworkImageView.kf.indicatorType = .activity
+        artworkImageView.kf.setImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1))
+            ]
+        )
     }
 }
